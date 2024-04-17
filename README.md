@@ -1,6 +1,6 @@
 # brave-miracl
 
-![Crates.io](https://img.shields.io/crates/v/brave-miracl?style=for-the-badge)
+[![Crates.io](https://img.shields.io/crates/v/brave-miracl?style=for-the-badge)](https://crates.io/crates/brave-miracl)
 
 A subset of the [MIRACL Core](https://github.com/miracl/core) library that includes the bn254 elliptic curve.
 
