@@ -1,6 +1,6 @@
 [package]
 name = "brave-miracl"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 authors = ["Mike Scott <mike.scott@miracl.com>"]
 description = "Subset of the MIRACL Core library that includes the bn254 elliptic curve"
@@ -14,4 +14,5 @@ exclude = ["/miracl-core"]
 [dependencies]
 
 [features]
+default = ["std"]
 std = []
