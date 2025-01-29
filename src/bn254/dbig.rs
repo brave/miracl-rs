@@ -19,6 +19,7 @@
 
 use crate::arch;
 use crate::arch::Chunk;
+use crate::arch::CONDMS;
 use crate::bn254::big;
 use crate::bn254::big::BIG;
 
@@ -131,20 +132,34 @@ impl DBIG {
         }
     }
 
-    pub fn cmove(&mut self, g: &DBIG, d: isize) -> Chunk {
-        let b = -d as Chunk;
-        let mut w=0 as Chunk;
-        let r=self.w[0]^g.w[1];
-        let mut ra=r.wrapping_add(r); ra >>= 1;
+    pub fn cmove(&mut self, g: &DBIG, b: isize) -> Chunk {
+        let r=CONDMS;
+        let bb=b as Chunk;
+        let c0=(!bb)&(r+1);
+        let c1=bb|r;
         for i in 0..big::DNLEN {
-            let mut t = b & (self.w[i] ^ g.w[i]);
-            t^=r;
-            let e=self.w[i]^t; w^=e;
-            self.w[i]=e^ra; 
+            let s = g.w[i];
+            let t = self.w[i];
+            unsafe{core::ptr::write_volatile(&mut self.w[i],c0*t+c1*s)}  
+            self.w[i]-=r*(t+s);
         }
-        return w;
+        return 0 as Chunk;
     }
-
+/*
+    pub fn cmove(&mut self, g: &DBIG, d: isize) -> Chunk {
+        let r0=self.w[0]^g.w[1];
+        let r1=self.w[1]^g.w[0];
+        let dd=d as Chunk;
+        let c0=1-(dd-r0);
+        let c1=dd+r1;
+        for i in 0..big::DNLEN {
+            let t=self.w[i];
+            unsafe {core::ptr::write_volatile(&mut self.w[i],c0*t + c1*g.w[i]);}
+            self.w[i]-=r0*t+r1*g.w[i];     
+        }
+        return 0 as Chunk;
+    }
+*/
     /* self+=x */
     pub fn add(&mut self, x: &DBIG) {
         for i in 0..big::DNLEN {
