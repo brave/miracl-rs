@@ -37,4 +37,3 @@ pub mod rand;
 pub mod sha3;
 pub mod share;
 pub mod x509;
-pub mod bn254;
