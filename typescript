@@ -1,0 +1,63 @@
+Script started on 2025-01-29 03:55:02+00:00 [COMMAND="bash /home/runner/work/_temp/4f5206b2-186b-4a6c-bc03-ef88f9b96f9b" <not executed on terminal>]
+Submodule 'miracl-core' (https://github.com/miracl/core) registered for path 'miracl-core'
+Cloning into '/home/runner/work/miracl-rs/miracl-rs/miracl-core'...
+Submodule path 'miracl-core': checked out 'ed3bb6aa3cd72c117e29d66cb5c12279fb5042f6'
+[1m[32m    Creating[0m binary (application) `mcore` package
+[1m[36mnote[0m[1m:[0m see more `Cargo.toml` keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+Elliptic Curves
+1. Ed25519
+2. c25519
+3. nist256
+4. brainpool
+5. anssi
+6. hifive
+7. Ed448
+8. nist384
+9. c41417
+10. nist521
+11. nums256w
+12. nums256e
+13. nums384w
+14. nums384e
+15. nums512w
+16. nums512e
+17. secp256k1
+18. sm2
+19. c13318
+20. jubjub
+21. x448
+22. secp160r1
+23. c1174
+24. c1665
+25. mdc
+26. tweedledum
+27. tweedledee
+
+Pairing-Friendly Elliptic Curves
+28. bn254
+29. bn254cx
+30. bls12383
+31. bls12381
+32. fp256bn
+33. fp512bn
+34. bls12443
+35. bls12461
+36. bn462
+37. bls24479
+38. bls48556
+39. bls48581
+40. bls48286
+41. bn158
+
+RSA
+42. rsa2048
+43. rsa3072
+44. rsa4096
+
+Choose schemes to support (select 0 to finish): Non-integer input, select values between 1 and 44
+
+Choose schemes to support (select 0 to finish): 
+Choose schemes to support (select 0 to finish): [1m[32m   Compiling[0m mcore v0.1.0 (/home/runner/work/miracl-rs/miracl-rs/mcore)
+[1m[32m    Finished[0m `release` profile [optimized] target(s) in 1.94s
+
+Script done on 2025-01-29 03:55:05+00:00 [COMMAND_EXIT_CODE="0"]
