@@ -46,9 +46,14 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
+        # Get submodule commit ID
+        submodule_commit=$(git submodule status miracl-core | awk '{print $1}')
+        short_commit_id=${submodule_commit:0:7}
+
         git config user.name "GitHub Actions Bot"
         git config user.email "<>"
         git add .
-        git commit -m "Update crate and bump version"
+        git commit -m "Update crate and bump version (miracl-core: $short_commit_id)"
         git push --force origin HEAD:update-crate
-        gh pr create --title "Update crate" --body "This PR updates the crate and bumps the minor version." --base master --head update-crate
+        pr_body=$(printf "This PR updates the crate and bumps the minor version.\n\n**Submodule Update:**\n- miracl-core commit: \`%s\`" "$submodule_commit")
+        gh pr create --title "Update crate (miracl-core: $short_commit_id)" --body "$pr_body" --base master --head update-crate
